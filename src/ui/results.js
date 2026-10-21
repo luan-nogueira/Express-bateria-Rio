@@ -25,13 +25,15 @@ export function renderLoading(el) {
 }
 
 export function renderNoMatch(el, vehicle) {
+  // Veículo sem aplicação cadastrada: o próximo passo é a confirmação humana (nunca um palpite).
+  const car = [vehicle.make, vehicle.model].filter(Boolean).map(esc).join(' ');
   el.innerHTML = `
     <div class="result-panel result-panel--fallback" tabindex="-1">
-      <p class="tag tag--signal">${icon('shield')} Validação especializada</p>
-      <h3 class="result-panel__title">Ainda não temos a aplicação deste veículo confirmada no catálogo on-line.</h3>
+      <p class="tag tag--signal">${icon('shield')} Próximo passo</p>
+      <h3 class="result-panel__title">Vamos confirmar a bateria ideal para o seu ${car}.</h3>
       <p class="result-panel__vehicle">${vehicleLabel(vehicle)}</p>
-      <p>Para não indicar uma bateria errada, um especialista confirma a capacidade, a tecnologia e a polaridade
-         corretas para o seu carro e envia o orçamento pelo WhatsApp.</p>
+      <p>Um especialista confere capacidade, tecnologia e polaridade para o seu veículo e envia o orçamento
+         pelo WhatsApp. Atendimento 24 horas, com entrega e instalação grátis.</p>
       <div class="result-panel__actions">
         ${waButton(whatsappUrl(vehicleMessage(vehicle)), 'Consultar com um especialista', 'busca-sem-resultado')}
         <a class="btn btn--ghost" href="tel:${business.phone.e164}" data-track="phone_click" data-track-location="busca-sem-resultado">

@@ -5,8 +5,56 @@ O configurador só mostra uma bateria como compatível quando existe uma
 Sem aplicação confirmada, o visitante é encaminhado ao especialista pelo
 WhatsApp com os dados do veículo já preenchidos.
 
+Hoje o catálogo está **vazio** de propósito: nenhum produto foi inventado.
+
+## Como a loja preenche (planilhas)
+
+As duas planilhas ficam em `catalogo/` e abrem direto no Excel:
+
+**`catalogo/baterias.csv`**: uma linha por bateria que a loja vende.
+
+| Coluna | Exemplo | Obrigatório |
+| --- | --- | --- |
+| `id` | `moura-60gd` (código único, sem espaços) | sim |
+| `fabricante` / `modelo` | `Moura` / `60GD` | sim |
+| `capacidade_ah` | `60` | sim |
+| `cca` | `480` | não |
+| `comprimento_mm` / `largura_mm` / `altura_mm` | `242` / `175` / `175` | não |
+| `polo_positivo` | `Direita` ou `Esquerda` | não |
+| `tecnologia` | `Convencional`, `EFB`, `AGM` | não |
+| `garantia_meses` | `24` (só se confirmada) | não |
+| `preco` / `preco_atualizado_em` | `499,90` / `20/10/2026` | não. O preço só aparece por 15 dias após a data. |
+| `imagem` | caminho da foto, ex.: `/img/produtos/moura-60gd.webp` | não |
+| `observacao` | texto curto | não |
+| `fonte` | `Tabela de aplicação Moura 2026` | **sim** |
+
+**`catalogo/aplicacoes.csv`**: uma linha por veículo (ou faixa de anos).
+
+| Coluna | Exemplo | Obrigatório |
+| --- | --- | --- |
+| `marca` / `modelo` | `Fiat` / `Argo` | sim |
+| `ano_de` / `ano_ate` | `2017` / `2024` | sim |
+| `motorizacao` | `1.3` (vazio = todas as motorizações) | não |
+| `start_stop` | `Sim`, `Não` ou vazio | não |
+| `baterias` | ids da planilha de baterias, separados por `\|` | sim |
+| `fonte` | `Tabela de aplicação Moura 2026, p. 12` | **sim** |
+| `verificado_em` | `21/10/2026` | não |
+
+Depois de preencher:
+
+```bash
+npm run catalogo
+```
+
+O comando confere cada linha, mostra as recusadas (com o número da linha na
+planilha) e grava `public/data/catalog.json`. Em seguida, `git add -A`,
+`git commit` e `git push` publicam o catálogo no site.
+
+Use números com vírgula decimal (`499,90`) e datas `dd/mm/aaaa`.
+
+## Formato gerado
+
 Arquivo: `public/data/catalog.json` (ou o endpoint em `VITE_CATALOG_URL`).
-Hoje ele está **vazio** de propósito — nenhum produto foi inventado.
 
 ## Formato
 

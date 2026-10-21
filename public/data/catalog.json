@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "source": "Catálogo ainda não cadastrado. Preencha conforme docs/CATALOGO.md com dados de fabricantes ou fornecedores.",
+  "updatedAt": "2026-10-21",
+  "source": "Planilhas de aplicação da Express Baterias Rio (catalogo/*.csv)",
   "batteries": [],
   "applications": []
 }

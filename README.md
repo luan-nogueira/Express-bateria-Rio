@@ -97,7 +97,7 @@ As promessas abaixo foram confirmadas pela empresa em 21/10/2026: chegada em at�
 
 ## Pendências (dependem de dados externos)
 
-- **Catálogo de baterias:** cadastrar baterias e aplicações a partir de tabelas de fabricantes ou fornecedores (ver `docs/CATALOGO.md`). Enquanto estiver vazio, toda consulta vai para o especialista pelo WhatsApp.
+- **Catálogo de baterias:** preencher `catalogo/baterias.csv` e `catalogo/aplicacoes.csv` (abrem no Excel) com dados de fabricantes ou fornecedores e rodar `npm run catalogo` (ver `docs/CATALOGO.md`). Enquanto estiver vazio, toda consulta vai para o especialista pelo WhatsApp.
 - **Fotos de produtos** para os cards de resultado.
 - **Depoimentos reais**, com autorização dos clientes. A seção de avaliações mostra só a nota, o total e os destaques informados.
 - **CNPJ / razão social** para o rodapé e a política de privacidade.
@@ -107,7 +107,7 @@ As promessas abaixo foram confirmadas pela empresa em 21/10/2026: chegada em at�
 
 ## Testes
 
-- `npm test`: 18 testes de regras (validação do catálogo, motorização, start-stop, preços desatualizados, mensagens e codificação do WhatsApp).
+- `npm test`: 21 testes de regras (validação do catálogo, motorização, start-stop, preços desatualizados, importação das planilhas, mensagens e codificação do WhatsApp).
 - Testes de interface (Playwright, executados durante o desenvolvimento): 62 verificações.
   - Formulário: validação, campos dependentes, estados de carregamento, resultado, sem resultado e erro com nova tentativa, mensagem do WhatsApp.
   - Celular: menu, ausência de rolagem horizontal, alvos de toque, botão flutuante.
