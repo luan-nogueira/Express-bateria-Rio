@@ -5,9 +5,15 @@ import { resolve } from 'node:path';
 // NOINDEX=1: marca a publicação como prévia, para não concorrer no Google com o domínio oficial.
 const base = process.env.BASE_PATH || '/';
 
+// PREVIEW_URL: endereço da prévia. A imagem de compartilhamento (WhatsApp etc.) passa a vir dele,
+// porque o domínio oficial ainda não serve esses arquivos. O canonical continua no domínio oficial.
+const OFFICIAL_URL = 'https://expressbateriasrio.com.br/';
+
 const noindexPreview = () => ({
   name: 'noindex-preview',
   transformIndexHtml(html) {
+    const preview = process.env.PREVIEW_URL;
+    if (preview) html = html.replaceAll(`content="${OFFICIAL_URL}og-image.jpg"`, `content="${preview}og-image.jpg"`);
     if (!process.env.NOINDEX || html.includes('name="robots"')) return html;
     return html.replace('<head>', '<head>\n  <meta name="robots" content="noindex, nofollow">');
   },

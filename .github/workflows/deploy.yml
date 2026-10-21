@@ -35,6 +35,7 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
           NOINDEX: '1'
+          PREVIEW_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
 
       - uses: actions/upload-pages-artifact@v5
         with:
