@@ -29,7 +29,12 @@ Regenerar as imagens otimizadas (requer Python + Pillow):
 - **Hospedagem atual (Apache/cPanel):** envie o conteúdo de `dist/` para `public_html/`.
   O `.htaccess` incluído configura a página 404, o cache e cabeçalhos de segurança.
   Faça backup do WordPress antes de substituir.
-- **Repositório GitHub + hospedagem estática:** comando de build `npm run build`, pasta de saída `dist`.
+- **GitHub Pages (prévia):** cada push na `main` publica automaticamente em
+  https://luan-nogueira.github.io/Express-bateria-Rio/ (workflow em `.github/workflows/deploy.yml`).
+  Essa versão sai com `noindex`, para não concorrer no Google com o domínio oficial.
+  Ativação, uma vez só: *Settings → Pages → Build and deployment → Source: GitHub Actions*.
+- **Outra hospedagem estática:** comando de build `npm run build`, pasta de saída `dist`.
+  Para servir numa subpasta, defina `BASE_PATH=/subpasta/` no build.
 
 Depois da troca, confira no Google Search Console o `sitemap.xml` e a propriedade do domínio.
 
@@ -40,7 +45,9 @@ Copie `.env.example` para `.env`. Nenhuma é secreta (todas vão para o navegado
 | Variável | Uso |
 | --- | --- |
 | `VITE_GTM_ID` | Google Tag Manager. Opcional. Só carrega após o consentimento de cookies. O site atual usa `GTM-KHSJ6MBS`. Confirme com quem gerencia os anúncios. |
-| `VITE_CATALOG_URL` | Endpoint do catálogo de baterias. Opcional. Padrão: `/data/catalog.json`. |
+| `VITE_CATALOG_URL` | Endpoint do catálogo de baterias. Opcional. Padrão: `data/catalog.json` do próprio site. |
+| `BASE_PATH` | Só no build: subpasta onde o site é servido. Padrão `/`. |
+| `NOINDEX` | Só no build: `1` adiciona `noindex` (para prévias). |
 
 ## Arquitetura
 

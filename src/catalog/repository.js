@@ -1,14 +1,15 @@
 /**
  * Carregamento do catálogo e da lista de veículos.
  *
- * Hoje os dados vêm de arquivos estáticos em /data. Para integrar um sistema
+ * Hoje os dados vêm de arquivos estáticos em public/data. Para integrar um sistema
  * de gestão de produtos, defina VITE_CATALOG_URL apontando para um endpoint
  * que devolva o mesmo formato JSON (docs/CATALOGO.md) — nada mais muda.
  */
 import { validateCatalog, emptyCatalog } from './catalog.js';
 
-const CATALOG_URL = import.meta.env.VITE_CATALOG_URL || '/data/catalog.json';
-const VEHICLES_URL = '/data/vehicles.json';
+const BASE = import.meta.env.BASE_URL; // '/' no domínio próprio, '/Express-bateria-Rio/' no GitHub Pages
+const CATALOG_URL = import.meta.env.VITE_CATALOG_URL || `${BASE}data/catalog.json`;
+const VEHICLES_URL = `${BASE}data/vehicles.json`;
 
 let catalogPromise;
 let vehiclesPromise;
