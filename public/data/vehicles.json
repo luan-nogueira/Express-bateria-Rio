@@ -1,0 +1,24 @@
+{
+  "note": "Lista de referência para o formulário (marcas e modelos comuns no Brasil). Não indica compatibilidade de bateria — isso vem apenas de catalog.json.",
+  "makes": [
+    { "name": "Chevrolet", "models": ["Celta", "Cobalt", "Corsa", "Cruze", "Equinox", "Montana", "Onix", "Onix Plus", "Prisma", "S10", "Spin", "Tracker", "Trailblazer"] },
+    { "name": "Fiat", "models": ["Argo", "Cronos", "Doblò", "Fastback", "Fiorino", "Grand Siena", "Idea", "Mobi", "Palio", "Pulse", "Punto", "Siena", "Strada", "Toro", "Uno"] },
+    { "name": "Volkswagen", "models": ["Amarok", "Fox", "Gol", "Golf", "Jetta", "Nivus", "Polo", "Saveiro", "SpaceFox", "T-Cross", "Taos", "Up!", "Virtus", "Voyage"] },
+    { "name": "Ford", "models": ["EcoSport", "Fiesta", "Focus", "Fusion", "Ka", "Ka Sedan", "Ranger", "Territory"] },
+    { "name": "Toyota", "models": ["Corolla", "Corolla Cross", "Etios", "Hilux", "RAV4", "SW4", "Yaris"] },
+    { "name": "Hyundai", "models": ["Creta", "HB20", "HB20S", "ix35", "Santa Fe", "Tucson"] },
+    { "name": "Honda", "models": ["City", "Civic", "CR-V", "Fit", "HR-V", "WR-V"] },
+    { "name": "Renault", "models": ["Captur", "Duster", "Kardian", "Kwid", "Logan", "Oroch", "Sandero", "Stepway"] },
+    { "name": "Nissan", "models": ["Frontier", "Kicks", "March", "Sentra", "Versa"] },
+    { "name": "Jeep", "models": ["Commander", "Compass", "Renegade"] },
+    { "name": "Peugeot", "models": ["2008", "208", "3008", "308", "Partner"] },
+    { "name": "Citroën", "models": ["Aircross", "C3", "C3 Aircross", "C4 Cactus"] },
+    { "name": "Mitsubishi", "models": ["ASX", "Eclipse Cross", "L200", "Outlander", "Pajero"] },
+    { "name": "Kia", "models": ["Cerato", "Picanto", "Sorento", "Sportage", "Stonic"] },
+    { "name": "BYD", "models": ["Dolphin", "Dolphin Mini", "King", "Seal", "Song Plus"] },
+    { "name": "Caoa Chery", "models": ["Arrizo 6", "Tiggo 5x", "Tiggo 7", "Tiggo 8"] },
+    { "name": "BMW", "models": ["Série 3", "X1", "X3"] },
+    { "name": "Mercedes-Benz", "models": ["Classe A", "Classe C", "GLA"] },
+    { "name": "Audi", "models": ["A3", "A4", "Q3"] }
+  ]
+}

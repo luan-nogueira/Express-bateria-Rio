@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-21",
+  "source": "DADOS FICTÍCIOS DE TESTE — usados apenas em testes automatizados e em `npm run dev` com ?catalogo=teste. Nunca publicados.",
+  "batteries": [
+    {
+      "id": "teste-60",
+      "manufacturer": "Fabricante Teste",
+      "model": "TESTE 60D",
+      "capacityAh": 60,
+      "cca": 480,
+      "dimensionsMm": { "length": 242, "width": 175, "height": 175 },
+      "polarity": "direita",
+      "technology": "Convencional",
+      "applicationNote": "Item fictício para teste da interface.",
+      "warrantyMonths": 12,
+      "image": null,
+      "price": { "amountBRL": 499.9, "updatedAt": "2026-10-20" },
+      "stock": null,
+      "source": "fixture de teste"
+    },
+    {
+      "id": "teste-70-efb",
+      "manufacturer": "Fabricante Teste",
+      "model": "TESTE 70 EFB",
+      "capacityAh": 70,
+      "cca": 650,
+      "dimensionsMm": { "length": 278, "width": 175, "height": 190 },
+      "polarity": "direita",
+      "technology": "EFB (start-stop)",
+      "applicationNote": "Item fictício para teste da interface.",
+      "warrantyMonths": null,
+      "image": null,
+      "price": { "amountBRL": 799, "updatedAt": "2025-01-01" },
+      "stock": null,
+      "source": "fixture de teste"
+    }
+  ],
+  "applications": [
+    { "make": "Fiat", "model": "Argo", "yearFrom": 2017, "yearTo": 2027, "engine": "1.0", "startStop": null, "batteryIds": ["teste-60"], "source": "fixture de teste", "verifiedAt": "2026-10-21" },
+    { "make": "Fiat", "model": "Argo", "yearFrom": 2017, "yearTo": 2027, "engine": "1.3", "startStop": false, "batteryIds": ["teste-60"], "source": "fixture de teste", "verifiedAt": "2026-10-21" },
+    { "make": "Fiat", "model": "Argo", "yearFrom": 2017, "yearTo": 2027, "engine": "1.3", "startStop": true, "batteryIds": ["teste-70-efb"], "source": "fixture de teste", "verifiedAt": "2026-10-21" },
+    { "make": "Jeep", "model": "Renegade", "yearFrom": 2016, "yearTo": 2027, "engine": null, "startStop": null, "batteryIds": ["teste-70-efb", "inexistente"], "source": "fixture de teste", "verifiedAt": "2026-10-21" }
+  ]
+}

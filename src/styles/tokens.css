@@ -1,0 +1,100 @@
+/* =========================================================
+   Express Baterias Rio — tokens do sistema de design
+   Cores institucionais extraídas do logotipo:
+   azul #182E89 · amarelo #FFB900 · branco
+   ========================================================= */
+:root {
+  /* Marca */
+  --brand-navy: #182e89;
+  --brand-navy-600: #2340b3;
+  --brand-navy-900: #0c1748;
+  --brand-navy-950: #070d2c;
+  --brand-yellow: #ffb900;
+  --brand-yellow-300: #ffd25c;
+  --brand-yellow-700: #c78f00;
+
+  /* Neutros (grafite automotivo) */
+  --ink-950: #07080c;
+  --ink-900: #0c0e14;
+  --ink-850: #11141c;
+  --ink-800: #161a24;
+  --ink-700: #222736;
+  --ink-600: #353b4d;
+  --steel-400: #8e97ad;
+  --steel-300: #aab2c6;
+  --steel-200: #cfd4e0;
+  --paper: #f3f4f7;
+  --paper-2: #e7e9ef;
+  --white: #ffffff;
+
+  /* Papéis */
+  --text-on-dark: #f2f4f9;
+  --muted-on-dark: #a3abbf;
+  --line-on-dark: rgb(255 255 255 / 0.09);
+  --line-on-dark-strong: rgb(255 255 255 / 0.16);
+  --text-on-light: #0e1120;
+  --muted-on-light: #4b5268;
+  --line-on-light: rgb(14 17 32 / 0.12);
+  --whatsapp: #25d366;
+  --ok: #3ccf91;
+  --danger: #ff6b5e;
+  --focus: var(--brand-yellow);
+
+  /* Tipografia */
+  --font-sans: 'Archivo Variable', 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --fs-mono: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: clamp(1.125rem, 1.02rem + 0.4vw, 1.3125rem);
+  --fs-xl: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --fs-h2: clamp(2rem, 1.45rem + 2.4vw, 3.5rem);
+  --fs-display: clamp(2.375rem, 1.6rem + 3.3vw, 4.375rem);
+
+  --lh-tight: 0.98;
+  --lh-snug: 1.15;
+  --lh-body: 1.6;
+
+  /* Espaçamento (base 4px) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --section-y: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+
+  /* Grade */
+  --container: 80rem;
+  --gutter: 1rem;
+
+  /* Forma e movimento */
+  --radius-s: 2px;
+  --radius-m: 6px;
+  --chamfer: 12px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 160ms;
+  --t-med: 320ms;
+
+  --header-h: 4rem;
+  --shadow-1: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
+}
+
+@media (min-width: 48em) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+@media (min-width: 64em) {
+  :root {
+    --header-h: 4.5rem;
+    --gutter: 2.5rem;
+  }
+}

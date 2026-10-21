@@ -1,0 +1,15 @@
+# Express Baterias Rio
+
+> Loja especializada em baterias automotivas em Botafogo, Rio de Janeiro, com entrega, instalação e atendimento 24 horas.
+
+- Endereço: Rua General Polidoro, 308, Botafogo, Rio de Janeiro — RJ, CEP 22280-003
+- Telefone e WhatsApp: (21) 99940-4005 — https://wa.me/5521999404005
+- Funcionamento: atendimento 24 horas
+- Área atendida: Zona Sul, Centro e região do Rio de Janeiro
+- Serviços: venda de baterias automotivas (carros, motos, caminhões e utilitários), entrega e instalação grátis, chegada em até 30 minutos na área atendida, parcelamento em até 10x sem juros
+- Google Maps: https://www.google.com/maps?cid=5553564379686471721
+- Instagram: https://www.instagram.com/expressbateriasrj/
+
+## Páginas
+- [Página inicial](https://expressbateriasrio.com.br/): consulta de bateria por veículo, serviços, contato
+- [Política de privacidade](https://expressbateriasrio.com.br/privacidade.html)
