@@ -13,12 +13,18 @@
     border-color var(--t-med) var(--ease-out),
     backdrop-filter var(--t-med);
 }
-.site-header.is-scrolled,
-.nav-open .site-header {
+.site-header.is-scrolled {
   background: rgb(7 8 12 / 0.88);
   border-bottom-color: var(--line-on-dark);
   backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+/* Menu aberto: cabeçalho sólido e SEM backdrop-filter (o filtro cria um novo
+   bloco de contenção e, no Safari/iOS, recortava o painel do menu). */
+.nav-open .site-header {
+  background: var(--ink-950);
+  border-bottom-color: var(--line-on-dark);
+  backdrop-filter: none;
+  transition: none;
 }
 .header-inner {
   display: flex;
@@ -106,9 +112,15 @@
 }
 
 .nav-mobile {
-  position: fixed;
-  inset: var(--header-h) 0 0;
+  /* Ancorado no cabeçalho (que já é fixo): não depende de bloco de contenção. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100vh - var(--header-h));
+  height: calc(100dvh - var(--header-h));
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--ink-950);
   padding-block: var(--s-5) var(--s-7);
 }
@@ -120,7 +132,7 @@
   border-bottom: 1px solid var(--line-on-dark);
   font-size: var(--fs-xl);
   font-weight: 650;
-  font-variation-settings: 'wdth' 110;
+  font-stretch: 110%;
   text-decoration: none;
 }
 .nav-mobile a .mono {
@@ -172,7 +184,7 @@
   font-size: var(--fs-display);
   line-height: var(--lh-tight);
   font-weight: 800;
-  font-variation-settings: 'wdth' 116;
+  font-stretch: 116%;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
@@ -586,7 +598,7 @@
 .results-head__title {
   font-size: var(--fs-xl);
   font-weight: 700;
-  font-variation-settings: 'wdth' 108;
+  font-stretch: 108%;
   line-height: var(--lh-snug);
   text-wrap: balance;
 }
@@ -712,7 +724,7 @@
 .product-card__ah strong {
   font-size: 2.5rem;
   font-weight: 800;
-  font-variation-settings: 'wdth' 120;
+  font-stretch: 120%;
   line-height: 1;
 }
 .product-card__ah span {
@@ -878,7 +890,7 @@
 .line-card h3 {
   font-size: var(--fs-xl);
   font-weight: 750;
-  font-variation-settings: 'wdth' 110;
+  font-stretch: 110%;
   line-height: var(--lh-snug);
 }
 .line-card p:not(.mono) {
@@ -916,7 +928,7 @@
 .svc h3 {
   font-size: var(--fs-xl);
   font-weight: 750;
-  font-variation-settings: 'wdth' 110;
+  font-stretch: 110%;
   line-height: var(--lh-snug);
   text-wrap: balance;
 }
@@ -999,7 +1011,7 @@
 .svc--24h p.svc__big {
   font-size: clamp(5rem, 3rem + 7vw, 8.5rem);
   font-weight: 800;
-  font-variation-settings: 'wdth' 125;
+  font-stretch: 125%;
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: transparent;
@@ -1217,7 +1229,7 @@
   gap: 0.1em;
   font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.25rem);
   font-weight: 800;
-  font-variation-settings: 'wdth' 122;
+  font-stretch: 122%;
   line-height: 1;
   letter-spacing: -0.035em;
   font-variant-numeric: tabular-nums;
@@ -1279,7 +1291,7 @@
 .reviews__rating {
   font-size: clamp(5.5rem, 3.5rem + 9vw, 10rem);
   font-weight: 800;
-  font-variation-settings: 'wdth' 125;
+  font-stretch: 125%;
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: var(--brand-navy);
@@ -1468,7 +1480,7 @@
 .map-card__addr {
   font-size: var(--fs-xl);
   font-weight: 700;
-  font-variation-settings: 'wdth' 108;
+  font-stretch: 108%;
 }
 .map-card__actions {
   display: flex;

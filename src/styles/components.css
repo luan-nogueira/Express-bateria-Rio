@@ -38,7 +38,7 @@
   font-size: var(--fs-h2);
   line-height: 1.02;
   font-weight: 760;
-  font-variation-settings: 'wdth' 112;
+  font-stretch: 112%;
   letter-spacing: -0.025em;
   text-wrap: balance;
 }
@@ -480,7 +480,7 @@ select option {
 }
 .dialog-title {
   font-size: var(--fs-xl);
-  font-variation-settings: 'wdth' 112;
+  font-stretch: 112%;
   line-height: var(--lh-snug);
 }
 

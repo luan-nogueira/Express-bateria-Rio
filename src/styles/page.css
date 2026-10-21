@@ -17,7 +17,7 @@
   font-size: var(--fs-h2);
   line-height: 1.05;
   font-weight: 760;
-  font-variation-settings: 'wdth' 112;
+  font-stretch: 112%;
   letter-spacing: -0.025em;
   color: var(--text-on-dark);
   margin-bottom: var(--s-3);
@@ -60,7 +60,7 @@
   font-size: var(--fs-display);
   line-height: var(--lh-tight);
   font-weight: 800;
-  font-variation-settings: 'wdth' 116;
+  font-stretch: 116%;
   letter-spacing: -0.035em;
   max-width: 14ch;
 }
