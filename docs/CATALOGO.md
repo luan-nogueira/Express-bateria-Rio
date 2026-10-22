@@ -7,7 +7,11 @@ WhatsApp com os dados do veículo já preenchidos.
 
 Hoje o catálogo está **vazio** de propósito: nenhum produto foi inventado.
 
-## Como a loja preenche (planilhas)
+## Como a loja preenche
+
+O jeito mais fácil é o **painel administrativo** (`/admin.html`): formulários para baterias, aplicações e tipos, com validação e botão de publicar. As planilhas abaixo continuam valendo para quem preferir o Excel, e o painel grava nelas.
+
+### Planilhas
 
 As duas planilhas ficam em `catalogo/` e abrem direto no Excel:
 

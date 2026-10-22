@@ -30,6 +30,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         privacidade: resolve(import.meta.dirname, 'privacidade.html'),
         notFound: resolve(import.meta.dirname, '404.html'),
+        admin: resolve(import.meta.dirname, 'admin.html'),
       },
     },
   },

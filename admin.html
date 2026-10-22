@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Painel | Express Baterias Rio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07080c">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <script type="module" src="/src/admin/main.js"></script>
+</head>
+<body class="admin">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></g></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></g></symbol>
+      <symbol id="i-logout" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m-5 5 5-5 5 5M4 20h16"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m-5-5 5 5 5-5M4 20h16"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4.5h-4.5"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M6.5 7V4.5h3V7m5 0V4.5h3V7M6.5 12.5h3m-1.5-1.5v3m6.5-1.5h3"/></g></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v-3.5L5.2 7.6A2 2 0 0 1 7 6.5h10a2 2 0 0 1 1.8 1.1L21 12.5V16H3zM3 12.5h18"/><path d="M5.5 16v2m13-2v2"/></g></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5 9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- LOGIN -->
+  <main id="login" class="login" hidden>
+    <form id="login-form" class="login__card" novalidate>
+      <img src="/img/logo-480.png" alt="Express Baterias Rio" width="480" height="159">
+      <h1>Painel administrativo</h1>
+      <div class="afield">
+        <label for="login-email">E-mail</label>
+        <input id="login-email" type="email" autocomplete="username" required>
+      </div>
+      <div class="afield">
+        <label for="login-pass">Senha</label>
+        <input id="login-pass" type="password" autocomplete="current-password" required>
+      </div>
+      <p id="login-msg" class="login__msg" role="alert"></p>
+      <button class="btn btn--primary btn--lg" type="submit">Entrar</button>
+      <a class="login__back" href="%BASE_URL%">Voltar ao site</a>
+    </form>
+  </main>
+
+  <!-- PAINEL -->
+  <div id="app" class="admin-app" hidden>
+    <header class="admin-header">
+      <img src="/img/logo-480.png" alt="Express Baterias Rio" width="480" height="159">
+      <p class="admin-header__title mono">Painel do catálogo</p>
+      <span id="dirty" class="badge badge--warn" hidden>Alterações não publicadas</span>
+      <a class="btn btn--ghost btn--sm" href="%BASE_URL%" target="_blank" rel="noopener">Ver site</a>
+      <button id="logout" class="btn btn--ghost btn--sm" type="button"><svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg><span>Sair</span></button>
+    </header>
+
+    <nav class="admin-tabs" role="tablist" aria-label="Seções do painel">
+      <button role="tab" type="button" data-tab="baterias" aria-selected="true" aria-controls="panel-baterias"><svg class="icon" aria-hidden="true"><use href="#i-battery"></use></svg>Baterias <span id="count-baterias" class="count">0</span></button>
+      <button role="tab" type="button" data-tab="aplicacoes" aria-selected="false" aria-controls="panel-aplicacoes"><svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>Aplicações por veículo <span id="count-aplicacoes" class="count">0</span></button>
+      <button role="tab" type="button" data-tab="tipos" aria-selected="false" aria-controls="panel-tipos"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg>Tipos de bateria <span id="count-tipos" class="count">0</span></button>
+      <button role="tab" type="button" data-tab="publicar" aria-selected="false" aria-controls="panel-publicar"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg>Publicar</button>
+    </nav>
+
+    <p id="status" class="admin-status" role="status" aria-live="polite"></p>
+
+    <section id="panel-baterias" role="tabpanel" class="admin-panel" aria-label="Baterias">
+      <div class="toolbar">
+        <div class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input id="search-baterias" type="search" placeholder="Buscar bateria (fabricante, modelo, tipo…)" aria-label="Buscar bateria"></div>
+        <button id="new-battery" class="btn btn--primary" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span>Nova bateria</span></button>
+      </div>
+      <p class="panel-help">Cadastre cada bateria que a loja vende. Depois, na aba <strong>Aplicações por veículo</strong>, ligue cada carro às baterias indicadas.</p>
+      <div id="table-baterias" class="table-wrap"></div>
+    </section>
+
+    <section id="panel-aplicacoes" role="tabpanel" class="admin-panel" aria-label="Aplicações por veículo" hidden>
+      <div class="toolbar">
+        <div class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input id="search-aplicacoes" type="search" placeholder="Buscar veículo (marca, modelo, ano…)" aria-label="Buscar aplicação"></div>
+        <button id="new-app" class="btn btn--primary" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span>Nova aplicação</span></button>
+      </div>
+      <p class="panel-help">Uma aplicação diz qual bateria serve em um veículo, numa faixa de anos (e, se precisar, numa motorização ou versão com/sem start-stop). Use <strong>Duplicar</strong> para cadastrar rápido versões parecidas.</p>
+      <div id="table-aplicacoes" class="table-wrap"></div>
+    </section>
+
+    <section id="panel-tipos" role="tabpanel" class="admin-panel" aria-label="Tipos de bateria" hidden>
+      <div class="toolbar">
+        <p class="panel-help">Tipos que aparecem na ficha das baterias (Convencional, EFB, AGM…).</p>
+        <button id="new-type" class="btn btn--primary" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span>Novo tipo</span></button>
+      </div>
+      <div id="table-tipos" class="table-wrap"></div>
+    </section>
+
+    <section id="panel-publicar" role="tabpanel" class="admin-panel" aria-label="Publicar" hidden>
+      <div class="pub-grid">
+        <div class="pub-card">
+          <h2>Publicar no site</h2>
+          <ul id="pub-summary" class="pub-summary"></ul>
+          <div id="pub-problems"></div>
+          <button id="publish" class="btn btn--primary btn--lg" type="button" disabled><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg><span>Publicar alterações</span></button>
+          <p id="publish-hint" class="panel-help"></p>
+          <p id="publish-result" class="publish-result"></p>
+          <div class="pub-actions">
+            <button id="download" class="btn btn--ghost btn--sm" type="button"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg><span>Baixar planilhas (Excel/CSV)</span></button>
+            <button id="discard" class="btn btn--ghost btn--sm" type="button"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg><span>Descartar rascunho e recarregar</span></button>
+          </div>
+        </div>
+        <div class="pub-card">
+          <h2>Conexão com o GitHub</h2>
+          <p class="panel-help">Para publicar, o painel precisa de um token do GitHub com permissão de escrita <strong>somente</strong> neste repositório. O token fica salvo só neste navegador.</p>
+          <p id="token-state" class="mono token-state"></p>
+          <form id="token-form" class="token-form">
+            <div class="afield">
+              <label for="token">Token do GitHub</label>
+              <input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+            </div>
+            <div class="pub-actions">
+              <button class="btn btn--primary btn--sm" type="submit">Salvar e testar</button>
+              <button id="token-clear" class="btn btn--ghost btn--sm" type="button">Remover token</button>
+            </div>
+            <p id="token-msg" class="token-msg" role="status" aria-live="polite"></p>
+          </form>
+          <details class="howto">
+            <summary>Como criar o token (uma vez só)</summary>
+            <ol>
+              <li>No GitHub, abra <strong>Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong> e clique em <strong>Generate new token</strong>.</li>
+              <li>Em <strong>Repository access</strong>, escolha <strong>Only select repositories</strong> → <em>Express-bateria-Rio</em>.</li>
+              <li>Em <strong>Permissions → Repository permissions</strong>, defina <strong>Contents: Read and write</strong>. Não marque mais nada.</li>
+              <li>Gere o token, copie e cole aqui. Para revogar, é só excluí-lo no GitHub.</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Editor (bateria, aplicação, tipo) -->
+  <dialog id="editor" class="editor" aria-labelledby="editor-title">
+    <form id="editor-form" novalidate>
+      <header class="editor__head">
+        <h2 id="editor-title">Editar</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+      </header>
+      <div id="editor-errors"></div>
+      <div id="editor-fields" class="editor__body"></div>
+      <footer class="editor__foot">
+        <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+        <button type="submit" class="btn btn--primary">Salvar no rascunho</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <datalist id="dl-fabricantes"></datalist>
+  <datalist id="dl-fontes"></datalist>
+  <datalist id="dl-marcas"></datalist>
+  <datalist id="dl-motor"></datalist>
+</body>
+</html>

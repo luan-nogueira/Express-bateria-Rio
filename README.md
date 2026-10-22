@@ -38,6 +38,16 @@ Regenerar as imagens otimizadas (requer Python + Pillow):
 
 Depois da troca, confira no Google Search Console o `sitemap.xml` e a propriedade do domínio.
 
+## Painel administrativo
+
+Endereço: `/admin.html` (na prévia: https://luan-nogueira.github.io/Express-bateria-Rio/admin.html).
+
+- **O que faz:** cadastro de baterias, das aplicações por veículo (marca, modelo, anos, motorização, start-stop) e dos tipos de bateria. Valida tudo com as mesmas regras do site e publica.
+- **Login:** e-mail e senha conferidos por um hash PBKDF2 em `src/admin/credentials.js`. Nem o e-mail nem a senha ficam no código. Para trocar: `node scripts/admin-senha.mjs <email> <nova-senha>`, depois commit e push.
+- **Publicação:** exige um token *fine-grained* do GitHub com **Contents: Read and write** apenas neste repositório. O token fica salvo só no navegador de quem publica. Cada publicação é um commit nas planilhas `catalogo/*.csv`, e o GitHub Actions valida e atualiza o site em cerca de 1 minuto.
+- **Rascunho:** as alterações ficam salvas no navegador até serem publicadas.
+- **Limite de segurança:** em site estático o login roda no navegador. Ele esconde o painel, mas quem protege os dados é o token. Sem token ninguém altera o site. Para um painel com várias pessoas e permissões, o próximo passo é um serviço com autenticação no servidor.
+
 ## Variáveis de ambiente
 
 Copie `.env.example` para `.env`. Nenhuma é secreta (todas vão para o navegador).
@@ -107,8 +117,8 @@ As promessas abaixo foram confirmadas pela empresa em 21/10/2026: chegada em at�
 
 ## Testes
 
-- `npm test`: 21 testes de regras (validação do catálogo, motorização, start-stop, preços desatualizados, importação das planilhas, mensagens e codificação do WhatsApp).
-- Testes de interface (Playwright, executados durante o desenvolvimento): 62 verificações.
+- `npm test`: 22 testes de regras (validação do catálogo, motorização, start-stop, preços desatualizados, importação das planilhas, mensagens e codificação do WhatsApp).
+- Testes de interface (Playwright, executados durante o desenvolvimento): 62 verificações no site e 24 no painel (login, cadastro, validação, rascunho e publicação com o GitHub simulado).
   - Formulário: validação, campos dependentes, estados de carregamento, resultado, sem resultado e erro com nova tentativa, mensagem do WhatsApp.
   - Celular: menu, ausência de rolagem horizontal, alvos de toque, botão flutuante.
   - Movimento reduzido, navegador sem WebGL, links e arquivos públicos.

@@ -47,3 +47,18 @@ test('linhas incompletas são recusadas; as válidas funcionam na consulta', () 
   assert.equal(r.status, 'match');
   assert.equal(r.batteries[0].model, 'X60D');
 });
+
+test('ida e volta: o que o painel grava (toCsv) é lido igual (parseCsv)', async () => {
+  const { toCsv, BATTERY_HEADERS } = await import('../src/catalog/csv.js');
+  const rows = [
+    { id: 'a-1', fabricante: 'Fab; "X"', modelo: 'M\nY', capacidade_ah: '60', fonte: 'Fonte, com vírgula' },
+    { id: 'b-2', fabricante: 'Ação', modelo: 'Ç', capacidade_ah: '70', fonte: 'f' },
+  ];
+  const back = parseCsv(toCsv(rows, BATTERY_HEADERS));
+  assert.equal(back.length, 2);
+  assert.equal(back[0].fabricante, 'Fab; "X"');
+  assert.equal(back[0].modelo, 'M\nY');
+  assert.equal(back[0].fonte, 'Fonte, com vírgula');
+  assert.equal(back[1].fabricante, 'Ação');
+  assert.equal(back[1].cca, '');
+});
