@@ -223,13 +223,19 @@
               <path d="M440 176v-26h24v26z" fill="url(#pg-lead)"/><ellipse cx="452" cy="150" rx="12" ry="4.5" fill="#d9dce1"/>
               <text x="482" y="172" fill="#fff" fill-opacity=".35" font-family="Archivo Variable, Arial, sans-serif" font-weight="800" font-size="22">+</text>
             </g>
-            <!-- rótulo -->
-            <rect x="140" y="262" width="268" height="164" fill="url(#pg-label)"/>
-            <path d="M318 262h48l-28 164h-48z" fill="#FFB900"/>
-            <path d="M336 302l-24 40h14l-8 40 26-46h-14z" fill="#0d1640"/>
-            <text x="156" y="352" fill="#fff" font-family="Archivo Variable, Arial Black, sans-serif" font-weight="800" font-size="62" style="font-stretch:125%">12V</text>
-            <text x="158" y="376" fill="#fff" fill-opacity=".85" font-family="Archivo Variable, Arial, sans-serif" font-weight="600" font-size="11" letter-spacing="1">BATERIA AUTOMOTIVA</text>
-            <text x="158" y="404" fill="#fff" fill-opacity=".6" font-family="JetBrains Mono, monospace" font-size="9">MODELO ILUSTRATIVO</text>
+            <!-- rótulo (grafite + painel azul + selo de raio) -->
+            <rect x="140" y="262" width="268" height="164" fill="#141720" stroke="#fff" stroke-opacity=".1"/>
+            <path d="M140 262h162l-22 164H140z" fill="url(#pg-label)"/>
+            <path d="M302 262h7l-22 164h-7z" fill="#FFB900"/>
+            <circle cx="355" cy="330" r="24" fill="none" stroke="#FFB900" stroke-width="2"/>
+            <path d="M359 314l-14 19h9l-4 15 15-20h-9z" fill="#FFB900"/>
+            <text x="154" y="330" fill="#fff" font-family="Archivo Variable, Arial Black, sans-serif" font-weight="800" font-size="50" style="font-stretch:125%">12V</text>
+            <text x="156" y="352" fill="#fff" fill-opacity=".9" font-family="Archivo Variable, Arial, sans-serif" font-weight="600" font-size="9" letter-spacing=".8">BATERIA AUTOMOTIVA</text>
+            <rect x="156" y="360" width="20" height="2" fill="#FFB900"/>
+            <text x="156" y="380" fill="#fff" fill-opacity=".65" font-family="JetBrains Mono, monospace" font-size="7">MODELO ILUSTRATIVO</text>
+            <!-- alça e indicador de carga -->
+            <path d="M262 192l24-13h150" stroke="#0d0f13" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <ellipse cx="392" cy="204" rx="8" ry="3.5" fill="#1fd067"/>
             <path d="M118 448h312l92-52" stroke="#FFB900" stroke-opacity=".35" stroke-width="1.2" fill="none"/>
           </svg>
           <div class="hero__canvas" data-hero-canvas></div>
@@ -267,12 +273,9 @@
     <!-- ============ CONFIGURADOR ============ -->
     <section id="encontrar" class="finder" aria-labelledby="finder-title">
       <div class="container">
-        <header class="section-head section-head--split" data-reveal>
-          <div data-reveal-item>
-            <p class="eyebrow">Consulta por veículo</p>
-            <h2 id="finder-title" class="h2">A bateria certa para o seu carro.</h2>
-          </div>
-          <p class="section-head__aside" data-reveal-item>Informe os dados do veículo para consultar as opções compatíveis.</p>
+        <header class="section-head" data-reveal>
+          <p class="eyebrow" data-reveal-item>Consulta por veículo</p>
+          <h2 id="finder-title" class="h2" data-reveal-item>A bateria certa para o seu carro.</h2>
         </header>
 
         <form id="finder-form" class="finder-form" novalidate data-reveal>
@@ -332,48 +335,18 @@
           </div>
           <p class="finder-note" data-reveal-item>
             <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
-            Só indicamos uma bateria quando a aplicação para o seu veículo está cadastrada com fonte técnica. Sem essa confirmação, um especialista valida pelo WhatsApp.
+            Só indicamos baterias com aplicação confirmada. Sem confirmação, um especialista valida pelo WhatsApp.
           </p>
           <noscript><p class="finder-note">A consulta precisa de JavaScript. Fale direto com a equipe: <a href="https://wa.me/5521999404005">WhatsApp (21) 99940-4005</a>.</p></noscript>
         </form>
 
         <div id="finder-results" class="finder-results" aria-live="polite" hidden></div>
-      </div>
-    </section>
 
-    <!-- ============ PRODUTOS ============ -->
-    <section id="produtos" class="products" aria-labelledby="products-title">
-      <div class="container">
-        <header class="section-head section-head--split" data-reveal>
-          <div data-reveal-item>
-            <p class="eyebrow eyebrow--dark">Produtos</p>
-            <h2 id="products-title" class="h2">Baterias para o que precisa rodar.</h2>
-          </div>
-          <p class="section-head__aside" data-reveal-item>Carro, moto ou veículo de trabalho: a equipe indica a bateria pela aplicação do veículo, não pelo palpite.</p>
-        </header>
-        <ul class="product-lines" role="list" data-reveal>
-          <li class="line-card" data-reveal-item>
-            <svg class="line-card__icon" aria-hidden="true"><use href="#i-car"></use></svg>
-            <p class="mono line-card__n">Linha 01</p>
-            <h3>Carros</h3>
-            <p>Baterias para carros de passeio, SUVs e picapes, incluindo veículos com sistema start-stop.</p>
-            <a class="link-arrow" href="#encontrar">Consultar pelo veículo<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
-          </li>
-          <li class="line-card" data-reveal-item>
-            <svg class="line-card__icon" aria-hidden="true"><use href="#i-moto"></use></svg>
-            <p class="mono line-card__n">Linha 02</p>
-            <h3>Motos</h3>
-            <p>Baterias para motocicletas. Informe o modelo e o ano da moto para a equipe confirmar a aplicação.</p>
-            <a class="link-arrow" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20consultar%20uma%20bateria%20para%20moto." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="produtos-moto">Consultar bateria de moto<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
-          </li>
-          <li class="line-card" data-reveal-item>
-            <svg class="line-card__icon" aria-hidden="true"><use href="#i-bus"></use></svg>
-            <p class="mono line-card__n">Linha 03</p>
-            <h3>Caminhões e utilitários</h3>
-            <p>Baterias para veículos de carga e trabalho. A especificação é confirmada caso a caso.</p>
-            <a class="link-arrow" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20consultar%20uma%20bateria%20para%20caminh%C3%A3o%20ou%20utilit%C3%A1rio." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="produtos-caminhao">Consultar bateria de caminhão<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
-          </li>
-        </ul>
+        <nav id="produtos" class="lines" aria-label="Linhas de baterias" data-reveal>
+          <p class="lines__label mono" data-reveal-item>Também atendemos</p>
+          <a class="line-chip" href="https://wa.me/5521999404005?text=Ol%C3%A1%21%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20consultar%20uma%20bateria%20para%20moto." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="produtos-moto" data-reveal-item><svg class="icon" aria-hidden="true"><use href="#i-moto"></use></svg><span>Motos</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+          <a class="line-chip" href="https://wa.me/5521999404005?text=Ol%C3%A1%21%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20consultar%20uma%20bateria%20para%20caminh%C3%A3o%20ou%20utilit%C3%A1rio." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="produtos-caminhao" data-reveal-item><svg class="icon" aria-hidden="true"><use href="#i-bus"></use></svg><span>Caminhões e utilitários</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+        </nav>
       </div>
     </section>
 
@@ -384,69 +357,60 @@
           <p class="eyebrow eyebrow--dark" data-reveal-item>Serviços</p>
           <h2 id="services-title" class="h2 h2--wide" data-reveal-item>Você precisa de uma solução. Nós ajudamos a encontrar.</h2>
         </header>
-
-        <div class="services-grid">
-          <article class="svc svc--feature" data-reveal>
-            <picture class="svc__media">
-              <source type="image/webp" srcset="/img/instalacao-ford-480.webp 480w, /img/instalacao-ford-800.webp 800w, /img/instalacao-ford-1200.webp 1200w" sizes="(min-width: 1024px) 56vw, 100vw">
-              <img src="/img/instalacao-ford-800.jpg" srcset="/img/instalacao-ford-480.jpg 480w, /img/instalacao-ford-800.jpg 800w, /img/instalacao-ford-1200.jpg 1200w" sizes="(min-width: 1024px) 56vw, 100vw" width="800" height="1067" loading="lazy" decoding="async" alt="Técnico da Express Baterias Rio com o capô aberto de um carro, durante a troca de bateria na rua.">
+        <ul class="svc-grid" role="list" data-reveal>
+          <li class="svc-card" data-reveal-item>
+            <picture class="svc-card__media">
+              <source type="image/webp" srcset="/img/instalacao-ford-480.webp 480w, /img/instalacao-ford-800.webp 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw">
+              <img src="/img/instalacao-ford-480.jpg" srcset="/img/instalacao-ford-480.jpg 480w, /img/instalacao-ford-800.jpg 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Técnico da Express Baterias Rio com o capô aberto de um carro, durante a troca de bateria na rua." style="object-position:62% 30%">
             </picture>
-            <div class="svc__body">
-              <p class="svc__n mono">01 · Instalação</p>
-              <h3>A troca acontece onde o carro está.</h3>
-              <p>Atendimento para substituição da bateria, conforme disponibilidade e condições do serviço. A instalação é grátis.</p>
-              <a class="link-arrow link-arrow--light" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20agendar%20a%20instala%C3%A7%C3%A3o%20de%20uma%20bateria." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-instalacao">Agendar instalação<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+            <div class="svc-card__body">
+              <p class="svc-card__n mono">01 · Instalação</p>
+              <h3>Onde o carro está.</h3>
+              <p>Troca grátis, conforme disponibilidade.</p>
+              <a class="link-arrow link-arrow--light" href="https://wa.me/5521999404005?text=Ol%C3%A1%21%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20agendar%20a%20instala%C3%A7%C3%A3o%20de%20uma%20bateria." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-instalacao">Agendar<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
             </div>
-          </article>
-
-          <article class="svc svc--delivery" data-reveal>
-            <picture class="svc__media">
-              <source type="image/webp" srcset="/img/loja-fachada-480.webp 480w, /img/loja-fachada-800.webp 800w" sizes="(min-width: 1024px) 36vw, 100vw">
-              <img src="/img/loja-fachada-800.jpg" srcset="/img/loja-fachada-480.jpg 480w, /img/loja-fachada-800.jpg 800w" sizes="(min-width: 1024px) 36vw, 100vw" width="800" height="1067" loading="lazy" decoding="async" alt="Fachada da loja Express Baterias Rio com o anúncio de entrega e instalação em domicílio.">
+          </li>
+          <li class="svc-card" data-reveal-item>
+            <picture class="svc-card__media">
+              <source type="image/webp" srcset="/img/loja-fachada-480.webp 480w, /img/loja-fachada-800.webp 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw">
+              <img src="/img/loja-fachada-480.jpg" srcset="/img/loja-fachada-480.jpg 480w, /img/loja-fachada-800.jpg 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Fachada da loja Express Baterias Rio com o anúncio de entrega e instalação em domicílio." style="object-position:30% 30%">
             </picture>
-            <div class="svc__body">
-              <p class="svc__n mono">02 · Entrega</p>
-              <h3>Sem precisar ir até a loja.</h3>
-              <p>Mais praticidade para quem precisa de uma bateria. Chegamos em até 30 minutos na Zona Sul, Centro e região — com entrega grátis.</p>
-              <a class="link-arrow" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20saber%20sobre%20a%20entrega%20de%20bateria." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-entrega">Pedir entrega<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+            <div class="svc-card__body">
+              <p class="svc-card__n mono">02 · Entrega</p>
+              <h3>Em até 30 minutos.</h3>
+              <p>Zona Sul, Centro e região. Entrega grátis.</p>
+              <a class="link-arrow link-arrow--light" href="https://wa.me/5521999404005?text=Ol%C3%A1%21%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20saber%20sobre%20a%20entrega%20de%20bateria." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-entrega">Pedir entrega<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
             </div>
-          </article>
-
-          <article class="svc svc--batteries" data-reveal>
-            <div class="svc__body">
-              <p class="svc__n mono">03 · Baterias automotivas</p>
-              <h3>A aplicação certa, antes do preço.</h3>
-              <p>Opções de baterias para veículos, com orientação para identificar a aplicação correta.</p>
-              <a class="link-arrow" href="#encontrar">Consultar meu veículo<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
-            </div>
-            <picture class="svc__media">
-              <source type="image/webp" srcset="/img/loja-interior-480.webp 480w, /img/loja-interior-800.webp 800w" sizes="(min-width: 1024px) 24vw, 100vw">
-              <img src="/img/loja-interior-480.jpg" srcset="/img/loja-interior-480.jpg 480w, /img/loja-interior-800.jpg 800w" sizes="(min-width: 1024px) 24vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Interior da loja Express Baterias Rio, com baterias automotivas organizadas no chão e nas prateleiras.">
+          </li>
+          <li class="svc-card" data-reveal-item>
+            <picture class="svc-card__media">
+              <source type="image/webp" srcset="/img/loja-interior-480.webp 480w, /img/loja-interior-800.webp 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw">
+              <img src="/img/loja-interior-480.jpg" srcset="/img/loja-interior-480.jpg 480w, /img/loja-interior-800.jpg 800w" sizes="(min-width: 64em) 25vw, (min-width: 40em) 50vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Interior da loja Express Baterias Rio, com baterias automotivas organizadas no chão e nas prateleiras." style="object-position:35% 60%">
             </picture>
-          </article>
-
-          <article class="svc svc--24h" data-reveal>
-            <p class="svc__n mono">04 · Atendimento</p>
+            <div class="svc-card__body">
+              <p class="svc-card__n mono">03 · Baterias</p>
+              <h3>A aplicação certa.</h3>
+              <p>Orientação para escolher a bateria do seu veículo.</p>
+              <a class="link-arrow link-arrow--light" href="#encontrar">Consultar<svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+            </div>
+          </li>
+          <li class="svc-card svc-card--24h" data-reveal-item>
+            <p class="svc-card__n mono">04 · Atendimento</p>
             <p class="svc__big" aria-hidden="true">24<span>h</span></p>
             <h3>Atendimento 24 horas.</h3>
-            <p>Canal de contato para quem precisa de suporte em qualquer horário.</p>
-            <a class="btn btn--primary" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20preciso%20de%20atendimento%20agora." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-24h">
-              <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg><span>Chamar agora</span>
-            </a>
-          </article>
-        </div>
+            <p>Suporte em qualquer horário.</p>
+            <a class="btn btn--primary btn--sm" href="https://wa.me/5521999404005?text=Ol%C3%A1%21%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20preciso%20de%20atendimento%20agora." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="servico-24h"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg><span>Chamar agora</span></a>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- ============ ENGENHARIA ============ -->
     <section id="engenharia" class="tech" aria-labelledby="tech-title">
       <div class="container">
-        <header class="section-head section-head--split" data-reveal>
-          <div data-reveal-item>
-            <p class="eyebrow">Engenharia da energia</p>
-            <h2 id="tech-title" class="h2">Cinco pontos que definem a bateria certa.</h2>
-          </div>
-          <p class="section-head__aside" data-reveal-item>Uma bateria pode até encaixar e não ser a correta. Estes são os critérios que a equipe confere antes de indicar um produto.</p>
+        <header class="section-head" data-reveal>
+          <p class="eyebrow" data-reveal-item>Engenharia da energia</p>
+          <h2 id="tech-title" class="h2" data-reveal-item>Cinco pontos que definem a bateria certa.</h2>
         </header>
 
         <div class="tech__grid">
@@ -500,28 +464,28 @@
             <figcaption class="mono">Valores ilustrativos · não correspondem a um produto à venda</figcaption>
           </figure>
 
-          <ol class="tech__list" data-reveal>
-            <li data-reveal-item data-point="1" tabindex="0">
-              <span class="tech__n mono">01</span>
-              <div><h3>Capacidade (Ah)</h3><p>Quanta energia a bateria armazena. Uma bateria de 60 Ah, por exemplo, fornece em teoria 3 A durante 20 horas.</p></div>
-            </li>
-            <li data-reveal-item data-point="2" tabindex="0">
-              <span class="tech__n mono">02</span>
-              <div><h3>Corrente de partida a frio (CCA)</h3><p>A corrente que a bateria entrega por 30 segundos a −18 °C mantendo a tensão mínima. Mais CCA significa mais folga na partida.</p></div>
-            </li>
-            <li data-reveal-item data-point="3" tabindex="0">
-              <span class="tech__n mono">03</span>
-              <div><h3>Tecnologia</h3><p>Convencional, EFB ou AGM. Carros com start-stop pedem EFB ou AGM; uma bateria convencional nesses carros dura bem menos.</p></div>
-            </li>
-            <li data-reveal-item data-point="4" tabindex="0">
-              <span class="tech__n mono">04</span>
-              <div><h3>Dimensões e polaridade</h3><p>A bateria precisa caber no suporte e ter o polo positivo do mesmo lado do cabo do carro.</p></div>
-            </li>
-            <li data-reveal-item data-point="5" tabindex="0">
-              <span class="tech__n mono">05</span>
-              <div><h3>Compatibilidade</h3><p>A referência é a especificação da montadora para o veículo e a motorização. Por isso a aplicação é confirmada antes da indicação.</p></div>
-            </li>
-          </ol>
+          <div class="tech__list" data-reveal>
+            <details data-point="1" data-reveal-item open>
+              <summary><span class="tech__n mono">01</span><span class="tech__t">Capacidade (Ah)</span><span class="tech__plus" aria-hidden="true"></span></summary>
+              <p>Quanta energia a bateria armazena. Ex.: 60 Ah fornecem, em teoria, 3 A durante 20 horas.</p>
+            </details>
+            <details data-point="2" data-reveal-item>
+              <summary><span class="tech__n mono">02</span><span class="tech__t">Corrente de partida (CCA)</span><span class="tech__plus" aria-hidden="true"></span></summary>
+              <p>A corrente entregue por 30 segundos a −18 °C. Mais CCA, mais folga na partida.</p>
+            </details>
+            <details data-point="3" data-reveal-item>
+              <summary><span class="tech__n mono">03</span><span class="tech__t">Tecnologia</span><span class="tech__plus" aria-hidden="true"></span></summary>
+              <p>Convencional, EFB ou AGM. Carros com start-stop pedem EFB ou AGM.</p>
+            </details>
+            <details data-point="4" data-reveal-item>
+              <summary><span class="tech__n mono">04</span><span class="tech__t">Dimensões e polaridade</span><span class="tech__plus" aria-hidden="true"></span></summary>
+              <p>A bateria precisa caber no suporte, com o polo positivo do lado do cabo.</p>
+            </details>
+            <details data-point="5" data-reveal-item>
+              <summary><span class="tech__n mono">05</span><span class="tech__t">Compatibilidade</span><span class="tech__plus" aria-hidden="true"></span></summary>
+              <p>A referência é a especificação da montadora para o veículo e a motorização.</p>
+            </details>
+          </div>
         </div>
       </div>
     </section>
@@ -543,30 +507,7 @@
       </div>
     </section>
 
-    <!-- ============ AVALIAÇÕES ============ -->
-    <section id="avaliacoes" class="reviews" aria-labelledby="reviews-title">
-      <div class="container reviews__grid">
-        <div class="reviews__score" data-reveal>
-          <p class="reviews__rating"><span data-count="5" data-decimals="1">5,0</span></p>
-          <p class="stars stars--lg" aria-hidden="true"><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg></p>
-          <p class="reviews__count"><strong><span data-count="503">503</span> avaliações</strong> no Google</p>
-          <p class="reviews__meta mono">Nota e total informados em out/2026</p>
-        </div>
-        <div class="reviews__body" data-reveal>
-          <p class="eyebrow eyebrow--dark" data-reveal-item>Avaliações</p>
-          <h2 id="reviews-title" class="h2" data-reveal-item>Quem precisa, recomenda.</h2>
-          <p class="reviews__lead" data-reveal-item>O que os clientes mais destacam nas avaliações:</p>
-          <ul class="chips" role="list" data-reveal-item>
-            <li>Rapidez</li><li>Eficiência</li><li>Profissionalismo</li><li>Atendimento atencioso</li><li>Preços competitivos</li>
-          </ul>
-          <a class="btn btn--dark" href="https://www.google.com/maps?cid=5553564379686471721" target="_blank" rel="noopener" data-track="reviews_click" data-track-location="avaliacoes" data-reveal-item>
-            <span>Ler as avaliações no Google</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SOBRE ============ -->
+    <!-- ============ SOBRE + AVALIAÇÕES ============ -->
     <section id="sobre" class="about" aria-labelledby="about-title">
       <div class="container about__grid">
         <div class="about__media" data-reveal>
@@ -582,15 +523,20 @@
         </div>
         <div class="about__body" data-reveal>
           <p class="eyebrow" data-reveal-item>Sobre a Express</p>
-          <h2 id="about-title" class="h2" data-reveal-item>Uma loja especializada, pronta para ir até você.</h2>
-          <p data-reveal-item>A Express Baterias Rio é uma loja especializada em baterias automotivas em Botafogo, no Rio de Janeiro. Há 10 anos atendemos motoristas da Zona Sul, do Centro e região — na loja ou no lugar onde o carro parou.</p>
-          <p data-reveal-item>O atendimento funciona 24 horas: você fala com a equipe pelo WhatsApp ou pelo telefone, recebe orientação sobre a bateria correta e combina a entrega com instalação.</p>
-          <dl class="facts" data-reveal-item>
-            <div><dt class="mono">Especialidade</dt><dd>Baterias automotivas</dd></div>
-            <div><dt class="mono">Atendimento</dt><dd>24 horas</dd></div>
-            <div><dt class="mono">Loja</dt><dd>Botafogo, Rio de Janeiro</dd></div>
-            <div><dt class="mono">Área</dt><dd>Zona Sul, Centro e região</dd></div>
-          </dl>
+          <h2 id="about-title" class="h2" data-reveal-item>Quem precisa, recomenda.</h2>
+          <div id="avaliacoes" class="rating" data-reveal-item>
+            <p class="rating__score"><span data-count="5" data-decimals="1">5,0</span></p>
+            <div class="rating__meta">
+              <p class="stars stars--lg" aria-hidden="true"><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg></p>
+              <p><strong><span data-count="503">503</span> avaliações</strong> no Google</p>
+              <a class="link-arrow link-arrow--light" href="https://www.google.com/maps?cid=5553564379686471721" target="_blank" rel="noopener" data-track="reviews_click" data-track-location="avaliacoes">Ler avaliações<svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+            </div>
+          </div>
+          <ul class="chips chips--dark" role="list" aria-label="Mais citados nas avaliações" data-reveal-item>
+            <li>Rapidez</li><li>Eficiência</li><li>Profissionalismo</li><li>Atendimento atencioso</li><li>Preços competitivos</li>
+          </ul>
+          <p class="about__text" data-reveal-item>Loja especializada em baterias automotivas em Botafogo. Há 10 anos atendemos a Zona Sul, o Centro e região — na loja ou onde o carro parou.</p>
+          <p class="rating__note mono" data-reveal-item>Nota e total informados em out/2026</p>
         </div>
       </div>
     </section>
@@ -623,11 +569,6 @@
               <div><span class="mono">Instagram</span><a href="https://www.instagram.com/expressbateriasrj/" target="_blank" rel="noopener">@expressbateriasrj</a></div>
             </li>
           </ul>
-          <div class="contact__ctas" data-reveal-item>
-            <a class="btn btn--primary btn--lg" href="https://wa.me/5521999404005?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Express%20Baterias%20Rio%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="contato-botao">
-              <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg><span>Chamar no WhatsApp</span>
-            </a>
-          </div>
         </div>
 
         <div class="map-card" data-reveal>

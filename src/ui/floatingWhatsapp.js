@@ -20,9 +20,10 @@ export function initFloatingWhatsapp() {
       update();
     }, { threshold: 0.15 }).observe(hero);
 
+  // Só conta a metade de baixo da tela, onde o botão fica (ignora o trecho atrás do cabeçalho).
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => (e.isIntersecting ? blocked.add(e.target) : blocked.delete(e.target)));
     update();
-  }, { threshold: 0.05 });
+  }, { rootMargin: '-50% 0px 0px 0px' });
   blockers.forEach((b) => io.observe(b));
 }

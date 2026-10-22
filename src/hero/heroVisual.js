@@ -51,6 +51,7 @@ export function initHeroVisual() {
         reducedMotion: prefersReducedMotion(),
         quality: narrow ? 'low' : 'high',
         interactive: finePointer && !narrow,
+        initialYaw: Number(debugFlag('yaw')) || 0,
       });
       stageEl.dataset.mode = '3d';
     } catch (err) {

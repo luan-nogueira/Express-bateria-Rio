@@ -15,6 +15,7 @@ import {
   BoxGeometry,
   BufferGeometry,
   CanvasTexture,
+  CapsuleGeometry,
   CircleGeometry,
   Color,
   CylinderGeometry,
@@ -66,72 +67,122 @@ function makeCanvas(w, h) {
   return [c, c.getContext('2d')];
 }
 
-function labelTexture(maxAniso) {
+function labelTexture(maxAniso, side = 'front') {
   const W = 1024;
   const H = 560;
   const [c, g] = makeCanvas(W, H);
+  const font = (w, px, fam = '"Archivo Variable", Arial, sans-serif') => `${w} ${px}px ${fam}`;
+  const mono = (px) => font(500, px, '"JetBrains Mono", Consolas, monospace');
+  const stretch = (v) => 'fontStretch' in g && (g.fontStretch = v);
 
-  // Base azul institucional com leve gradiente vertical.
-  const bg = g.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, '#1d3699');
-  bg.addColorStop(1, '#13246e');
-  g.fillStyle = bg;
+  // Base grafite (acabamento de adesivo premium).
+  const base = g.createLinearGradient(0, 0, W, H);
+  base.addColorStop(0, '#1b1f29');
+  base.addColorStop(1, '#0d0f14');
+  g.fillStyle = base;
   g.fillRect(0, 0, W, H);
 
-  // Faixa diagonal amarela (eco do raio do logotipo).
-  g.save();
-  g.beginPath();
-  g.moveTo(W * 0.66, 0);
-  g.lineTo(W * 0.86, 0);
-  g.lineTo(W * 0.74, H);
-  g.lineTo(W * 0.54, H);
-  g.closePath();
-  g.fillStyle = BRAND_YELLOW;
-  g.fill();
-  g.restore();
+  if (side === 'front') {
+    // Painel azul institucional com borda diagonal (eco do raio do logotipo).
+    const navy = g.createLinearGradient(0, 0, 0, H);
+    navy.addColorStop(0, '#2141b0');
+    navy.addColorStop(1, '#122170');
+    g.fillStyle = navy;
+    g.beginPath();
+    g.moveTo(0, 0);
+    g.lineTo(W * 0.6, 0);
+    g.lineTo(W * 0.52, H);
+    g.lineTo(0, H);
+    g.closePath();
+    g.fill();
+    // Hachura fina, só perceptível de perto.
+    g.save();
+    g.clip();
+    g.strokeStyle = 'rgba(255,255,255,0.04)';
+    g.lineWidth = 2;
+    for (let x = -H; x < W; x += 14) {
+      g.beginPath();
+      g.moveTo(x, H);
+      g.lineTo(x + H, 0);
+      g.stroke();
+    }
+    g.restore();
+    // Filete amarelo na diagonal.
+    g.fillStyle = BRAND_YELLOW;
+    g.beginPath();
+    g.moveTo(W * 0.6, 0);
+    g.lineTo(W * 0.625, 0);
+    g.lineTo(W * 0.545, H);
+    g.lineTo(W * 0.52, H);
+    g.closePath();
+    g.fill();
 
-  // Raio estilizado sobre a faixa.
-  g.save();
-  g.translate(W * 0.7, H * 0.5);
-  g.fillStyle = '#0d1640';
-  g.beginPath();
-  g.moveTo(18, -120);
-  g.lineTo(-46, 16);
-  g.lineTo(-4, 16);
-  g.lineTo(-22, 120);
-  g.lineTo(46, -22);
-  g.lineTo(4, -22);
-  g.closePath();
-  g.fill();
-  g.restore();
+    g.fillStyle = '#ffffff';
+    g.font = font(800, 176);
+    stretch('expanded');
+    g.fillText('12V', 60, 250);
+    stretch('normal');
+    g.font = font(650, 28);
+    g.globalAlpha = 0.92;
+    g.fillText('BATERIA AUTOMOTIVA', 64, 310);
+    g.globalAlpha = 1;
+    g.fillStyle = BRAND_YELLOW;
+    g.fillRect(64, 338, 72, 4);
+    g.fillStyle = 'rgba(255,255,255,0.7)';
+    g.font = mono(20);
+    g.fillText('MODELO ILUSTRATIVO', 64, 392);
 
-  // Tipografia.
-  g.fillStyle = '#ffffff';
-  g.textBaseline = 'alphabetic';
-  g.font = '800 200px "Archivo Variable", "Arial Black", sans-serif';
-  if ('fontStretch' in g) g.fontStretch = 'expanded';
-  g.fillText('12V', 64, 290);
-
-  if ('fontStretch' in g) g.fontStretch = 'normal';
-  g.font = '600 30px "Archivo Variable", Arial, sans-serif';
-  g.globalAlpha = 0.9;
-  g.fillText('BATERIA AUTOMOTIVA', 70, 350);
-
-  g.globalAlpha = 0.35;
-  g.fillRect(70, 384, 420, 2);
-
-  g.globalAlpha = 0.75;
-  g.font = '500 22px "JetBrains Mono", Consolas, monospace';
-  g.fillText('MODELO ILUSTRATIVO', 70, 428);
-  g.fillText('+  POSITIVO   −  NEGATIVO', 70, 466);
-
-  // Marcas de régua técnica na borda inferior.
-  g.globalAlpha = 0.4;
-  for (let i = 0; i < 46; i++) {
-    const x = 70 + i * 10;
-    g.fillRect(x, H - 58, 2, i % 5 === 0 ? 22 : 11);
+    // Selo com raio na área grafite.
+    const cx = W * 0.8;
+    const cy = H * 0.42;
+    g.strokeStyle = BRAND_YELLOW;
+    g.lineWidth = 5;
+    g.beginPath();
+    g.arc(cx, cy, 86, 0, Math.PI * 2);
+    g.stroke();
+    g.fillStyle = BRAND_YELLOW;
+    g.beginPath();
+    g.moveTo(cx + 14, cy - 58);
+    g.lineTo(cx - 34, cy + 10);
+    g.lineTo(cx - 4, cy + 10);
+    g.lineTo(cx - 16, cy + 58);
+    g.lineTo(cx + 34, cy - 12);
+    g.lineTo(cx + 4, cy - 12);
+    g.closePath();
+    g.fill();
+    g.fillStyle = 'rgba(255,255,255,0.6)';
+    g.font = mono(18);
+    g.textAlign = 'center';
+    g.fillText('+ POSITIVO  − NEGATIVO', cx, cy + 140);
+    g.textAlign = 'left';
+  } else {
+    // Verso: faixa azul inferior + conceito da marca.
+    g.fillStyle = '#16297f';
+    g.fillRect(0, H * 0.72, W, H * 0.28);
+    g.fillStyle = BRAND_YELLOW;
+    g.fillRect(0, H * 0.72, W, 5);
+    g.fillStyle = 'rgba(255,255,255,0.9)';
+    const motto = 'ENERGIA · PRECISÃO · MOVIMENTO';
+    stretch('expanded');
+    let size = 64;
+    g.font = font(800, size);
+    while (g.measureText(motto).width > W - 128 && size > 24) g.font = font(800, (size -= 2));
+    g.fillText(motto, 60, 200);
+    stretch('normal');
+    g.fillStyle = 'rgba(255,255,255,0.55)';
+    g.font = mono(22);
+    g.fillText('MODELO ILUSTRATIVO · 12 V', 64, 262);
+    g.fillStyle = 'rgba(255,255,255,0.8)';
+    g.font = mono(20);
+    g.fillText('CONFIRA A APLICAÇÃO DO SEU VEÍCULO', 64, H * 0.72 + 92);
   }
-  g.globalAlpha = 1;
+
+  // Régua técnica + contorno de adesivo.
+  g.fillStyle = 'rgba(255,255,255,0.35)';
+  for (let i = 0; i < 40; i++) g.fillRect(64 + i * 10, H - 46, 2, i % 5 === 0 ? 18 : 9);
+  g.strokeStyle = 'rgba(255,255,255,0.1)';
+  g.lineWidth = 4;
+  g.strokeRect(10, 10, W - 20, H - 20);
 
   const t = new CanvasTexture(c);
   t.colorSpace = SRGBColorSpace;
@@ -251,13 +302,38 @@ function buildBattery({ maxAniso, quality }) {
   lidTop.receiveShadow = true;
   group.add(lidTop);
 
-  // Alça embutida (dois trilhos baixos ao longo da tampa).
-  const railGeo = new RoundedBoxGeometry(1.3, 0.05, 0.06, 2, 0.02);
-  for (const z of [0.18, 0.3]) {
-    const rail = shadowy(new Mesh(railGeo, lidSide));
-    rail.position.set(0, TOP + 0.02, z);
-    group.add(rail);
+  // Encaixes rebaixados dos terminais (pads mais escuros).
+  const padMat = new MeshStandardMaterial({ color: '#0e1014', roughness: 0.7 });
+  const padGeo = new RoundedBoxGeometry(0.5, 0.012, 0.5, 2, 0.04);
+  for (const x of [TERMINAL_X, -TERMINAL_X]) {
+    const pad = new Mesh(padGeo, padMat);
+    pad.position.set(x, TOP + 0.004, TERMINAL_Z);
+    pad.receiveShadow = true;
+    group.add(pad);
   }
+
+  // Alça rebatível deitada sobre a tampa, com articulações nas pontas.
+  const handleMat = new MeshPhysicalMaterial({ color: '#101217', roughness: 0.42, clearcoat: 0.4, clearcoatRoughness: 0.35 });
+  const grip = shadowy(new Mesh(new CapsuleGeometry(0.038, 1.12, 6, 16), handleMat));
+  grip.rotation.z = Math.PI / 2;
+  grip.position.set(0, TOP + 0.045, 0.16);
+  group.add(grip);
+  const hingeGeo = new RoundedBoxGeometry(0.12, 0.08, 0.16, 2, 0.025);
+  for (const x of [-0.66, 0.66]) {
+    const hinge = shadowy(new Mesh(hingeGeo, handleMat));
+    hinge.position.set(x, TOP + 0.04, 0.16);
+    group.add(hinge);
+  }
+
+  // Indicador de carga ("olho mágico").
+  const eyeRing = new Mesh(new CylinderGeometry(0.085, 0.09, 0.03, 40), new MeshStandardMaterial({ color: '#08090c', roughness: 0.4 }));
+  eyeRing.position.set(0.42, TOP + 0.015, 0.52);
+  const eye = new Mesh(
+    new CylinderGeometry(0.055, 0.055, 0.036, 40),
+    new MeshPhysicalMaterial({ color: '#1fd067', emissive: '#16b856', emissiveIntensity: 0.6, roughness: 0.12, clearcoat: 1 }),
+  );
+  eye.position.set(0.42, TOP + 0.02, 0.52);
+  group.add(eyeRing, eye);
 
   // Terminais: colarinho colorido + poste de chumbo cônico.
   const collarGeo = new CylinderGeometry(0.19, 0.2, 0.06, 40);
@@ -290,16 +366,17 @@ function buildBattery({ maxAniso, quality }) {
   label.receiveShadow = true;
   group.add(label);
 
-  // Faixa lateral discreta no lado oposto (para a rotação não mostrar uma face "vazia").
-  const backBand = new Mesh(
-    new PlaneGeometry(L * 0.86, 0.08),
-    new MeshBasicMaterial({ color: BRAND_YELLOW }),
+  // Rótulo traseiro: a rotação nunca mostra uma face "vazia".
+  const back = new Mesh(
+    new PlaneGeometry(L * 0.86, BODY_H * 0.7),
+    new MeshPhysicalMaterial({ map: labelTexture(maxAniso, 'back'), roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.25 }),
   );
-  backBand.position.set(0, BASE_H + BODY_H * 0.82, -D / 2 - 0.002);
-  backBand.rotation.y = Math.PI;
-  group.add(backBand);
+  back.position.set(0, BASE_H + BODY_H * 0.5, -D / 2 - 0.002);
+  back.rotation.y = Math.PI;
+  back.receiveShadow = true;
+  group.add(back);
 
-  return group;
+  return { group, eye };
 }
 
 function buildStage(quality) {
@@ -365,7 +442,25 @@ function buildStage(quality) {
   dial.position.y = 0.006;
   stage.add(dial);
 
-  return { stage, halo, glow, dial };
+  // Energia em movimento: um traço luminoso percorre o anel…
+  const spark = new Mesh(
+    new RingGeometry(2.0, 2.06, 48, 1, 0, 0.55),
+    new MeshBasicMaterial({ color: '#ffd25c', transparent: true, opacity: 0, depthWrite: false, blending: AdditiveBlending }),
+  );
+  spark.rotation.x = -Math.PI / 2;
+  spark.position.y = 0.008;
+  stage.add(spark);
+
+  // …e, de tempos em tempos, uma onda discreta se expande a partir dele.
+  const wave = new Mesh(
+    new RingGeometry(2.0, 2.025, 160),
+    new MeshBasicMaterial({ color: BRAND_YELLOW, transparent: true, opacity: 0, depthWrite: false }),
+  );
+  wave.rotation.x = -Math.PI / 2;
+  wave.position.y = 0.007;
+  stage.add(wave);
+
+  return { stage, halo, glow, dial, spark, wave };
 }
 
 /* ---------- Montagem ---------- */
@@ -382,7 +477,7 @@ const yieldToMain = () =>
  * @returns {Promise<{ dispose: () => void }>} resolve após o primeiro quadro renderizado
  */
 export async function mountBatteryScene(container, opts) {
-  const { reducedMotion, quality, interactive } = opts;
+  const { reducedMotion, quality, interactive, initialYaw = 0 } = opts;
 
   // Garante as fontes do rótulo antes de desenhar o canvas.
   try {
@@ -423,7 +518,7 @@ export async function mountBatteryScene(container, opts) {
 
   await yieldToMain();
   const maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
-  const battery = buildBattery({ maxAniso, quality });
+  const { group: battery, eye } = buildBattery({ maxAniso, quality });
   const pivot = new Group(); // rotação contínua
   const tilt = new Group(); // inclinação pelo cursor
   pivot.add(battery);
@@ -431,7 +526,7 @@ export async function mountBatteryScene(container, opts) {
   scene.add(tilt);
 
   await yieldToMain();
-  const { stage, halo, glow, dial } = buildStage(quality);
+  const { stage, halo, glow, dial, spark, wave } = buildStage(quality);
   scene.add(stage);
 
   // Iluminação de estúdio.
@@ -476,7 +571,7 @@ export async function mountBatteryScene(container, opts) {
     camera.aspect = w / h;
     // Enquadra a esfera envolvente da bateria + plataforma em qualquer proporção.
     // Quadros largos são limitados pela altura: dá para aproximar sem cortar a bateria.
-    const radius = camera.aspect > 1.3 ? 1.6 : 1.95;
+    const radius = camera.aspect > 1.3 ? 1.6 : 2.15;
     const vfov = MathUtils.degToRad(camera.fov);
     const hfov = 2 * Math.atan(Math.tan(vfov / 2) * camera.aspect);
     const dist = (radius / Math.sin(Math.min(vfov, hfov) / 2)) * 0.98;
@@ -492,7 +587,7 @@ export async function mountBatteryScene(container, opts) {
   /* ---------- Animação ---------- */
   const timer = new Timer();
   let elapsed = 0;
-  let yaw = 0;
+  let yaw = initialYaw;
   let running = false;
   let raf = 0;
   let visible = true;
@@ -505,7 +600,12 @@ export async function mountBatteryScene(container, opts) {
     elapsed += dt;
     const e = ENTRANCE ? easeOut(Math.min(1, elapsed / ENTRANCE)) : 1;
 
-    if (!reducedMotion) yaw += dt * 0.16; // ~39 s por volta: lenta o suficiente para observar
+    // Giro contínuo e lento, que desacelera quando um rótulo está de frente
+    // (0,08 rad/s) e passa mais rápido pelas laterais (0,22 rad/s).
+    if (!reducedMotion) {
+      const facing = Math.abs(Math.cos(BASE_YAW + yaw));
+      yaw += dt * (0.22 - 0.14 * facing);
+    }
     pivot.rotation.y = BASE_YAW + yaw + (1 - e) * -0.9;
     battery.position.y = (reducedMotion ? 0 : Math.sin(elapsed * 0.9) * 0.035) + (1 - e) * -0.35;
     const s = 0.94 + 0.06 * e;
@@ -527,6 +627,18 @@ export async function mountBatteryScene(container, opts) {
     glow.material.opacity = 0.75 + (breath - 0.42) * 1.2;
     if (!reducedMotion) dial.rotation.y -= dt * 0.02;
     dial.material.opacity = 0.22 * e;
+
+    // Energia: faísca no anel, onda a cada 6 s e o indicador de carga "respirando".
+    if (!reducedMotion) {
+      spark.rotation.z = elapsed * 0.6;
+      spark.material.opacity = 0.75 * e;
+      const w = (elapsed % 6) / 1.6;
+      if (w < 1) {
+        wave.scale.setScalar(1 + 0.32 * easeOut(w));
+        wave.material.opacity = 0.5 * (1 - w) * e;
+      } else wave.material.opacity = 0;
+      eye.material.emissiveIntensity = 0.45 + Math.sin(elapsed * 2.2) * 0.25;
+    }
 
     renderer.render(scene, camera);
   }
