@@ -30,6 +30,11 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      # Gera o catálogo a partir das planilhas (catalogo/*.csv). Se alguma linha
+      # estiver incompleta, a publicação para e o erro aparece aqui no Actions.
+      - name: Catálogo de baterias (planilhas → site)
+        run: npm run catalogo
+
       - name: Build (servido em /<nome-do-repositório>/, marcado como prévia)
         run: npm run build
         env:

@@ -40,7 +40,17 @@ As duas planilhas ficam em `catalogo/` e abrem direto no Excel:
 | `fonte` | `Tabela de aplicação Moura 2026, p. 12` | **sim** |
 | `verificado_em` | `21/10/2026` | não |
 
-Depois de preencher:
+### Atualizar pelo site do GitHub (sem instalar nada)
+
+1. Abra o repositório no GitHub → pasta `catalogo/`.
+2. Para editar poucas linhas: clique no arquivo → ícone de lápis → edite → **Commit changes**.
+3. Para trocar a planilha inteira: edite no Excel (salve como **CSV UTF-8, separado por ponto e vírgula**),
+   depois **Add file → Upload files** na pasta `catalogo/` → **Commit changes**.
+4. Em cerca de 1 minuto o site é atualizado. Acompanhe na aba **Actions**: se alguma linha estiver
+   incompleta, a publicação para e a etapa "Catálogo de baterias" mostra o número da linha a corrigir.
+   O site continua no ar com a versão anterior.
+
+### Atualizar pelo computador
 
 ```bash
 npm run catalogo
