@@ -651,7 +651,7 @@ export async function mountBatteryScene(container, opts) {
     if (degradeStep >= 2) return;
     perfFrames++;
     perfTime += dt;
-    if (perfFrames < 90) return;
+    if (perfFrames < 45) return;
     const avg = perfTime / perfFrames;
     perfFrames = 0;
     perfTime = 0;
@@ -680,10 +680,11 @@ export async function mountBatteryScene(container, opts) {
     acc += timer.getDelta();
     raf = requestAnimationFrame(loop);
     if (acc < minFrameTime) return;
-    const dt = Math.min(acc, 0.05);
+    const frameTime = acc; // tempo real entre quadros (para o monitor de desempenho)
+    const dt = Math.min(acc, 0.05); // passo da animação limitado (evita saltos)
     acc = 0;
     frame(dt);
-    watchPerf(dt);
+    watchPerf(frameTime);
   }
   function start() {
     if (running || reducedMotion || degradeStep >= 2) return;
